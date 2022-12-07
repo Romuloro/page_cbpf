@@ -1,8 +1,10 @@
 import React from "react";
 
+import './Titulo.css'
+
 const Titulo = () => {
   return (
-    <div>
+    <div className="titulo">
       <h1> PetroIA</h1>
     </div>
   );
