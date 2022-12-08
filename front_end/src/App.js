@@ -21,7 +21,7 @@ export default function App() {
       <div className="container">
         <Titulo />
         <Classe />
-        <ListaArquivo />
+        {/* <ListaArquivo /> */}
         {/* <Resultado /> */}
         <FileUpload files={files} setFiles={setFiles} removeFile={removeFile} />
         <FileList files={files} removeFile={removeFile} />
