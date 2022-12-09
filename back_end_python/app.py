@@ -22,6 +22,14 @@ async def get_data():
 @app.post('/arquivo')
 async def post_arquivo(arquivo: List[UploadFile]):
     for img in arquivo:
+        with open(f'./output/{img.filename}', "wb") as buffer:
+            shutil.copyfileobj(img.file, buffer)
+
+    return {"file_name": "Good"}
+
+@app.post('/watershed')
+async def whatershed_process(images: List[UploadFile]):
+    for img in arquivo:
         with open(f'{img.filename}', "wb") as buffer:
             shutil.copyfileobj(img.file, buffer)
 
