@@ -22,7 +22,7 @@ async def get_data():
 @app.post('/arquivo')
 async def post_arquivo(arquivo: List[UploadFile]):
     for img in arquivo:
-        with open(f'./output/{img.filename}', "wb") as buffer:
+        with open(f'./input/{img.filename}', "wb") as buffer:
             shutil.copyfileobj(img.file, buffer)
 
     return {"file_name": "Good"}
