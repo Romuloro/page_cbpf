@@ -27,8 +27,8 @@ async def post_arquivo(arquivo: List[UploadFile]):
 
     return {"file_name": "Good"}
 
-@app.post('/watershed')
-async def whatershed_process(images: List[UploadFile]):
+@app.post('/preparedImage')
+async def preparedImage(images: List[UploadFile]):
     for img in arquivo:
         with open(f'{img.filename}', "wb") as buffer:
             shutil.copyfileobj(img.file, buffer)
