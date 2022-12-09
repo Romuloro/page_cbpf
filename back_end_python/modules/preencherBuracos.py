@@ -1,7 +1,8 @@
 import cv2 as cv
 import numpy as np
+import asyncio
 
-def preencherBuracos(img_or, image_name):
+async def preencherBuracos(img_or, image_name):
     b,g,r = cv.split(img_or)
     contours, hierarchy = cv.findContours(r, cv.RETR_TREE, cv.CHAIN_APPROX_NONE) 
     img = np.zeros([np.shape(r)[0], np.shape(r)[1]], np.uint8)
