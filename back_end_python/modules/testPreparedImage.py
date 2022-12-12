@@ -11,14 +11,15 @@ async def testImage():
     fileName = '/home/romulo/projetos_pessoais/page_cbpf_/back_end_python/input/4266_PP_5X_SEG_LABEL.png'
 
     img = cv.imread(fileName)
-    
-    fileNameBuracos = await preencherBuracos.preencherBuracos(img, fileName[-24:])
 
-    img_preench = cv.imread(fileNameBuracos)
 
-    img_buraco = await RemovePores.RemovePores(img_preench, 300)
+    fileNamePree = await RemovePores.RemovePores(img, 300, fileName[-24:-4])
+
+    img_preench = cv.imread(fileNamePree)
     
-    cv.imwrite(f'./results/{fileName[-24:]}_test.png', img_buraco)
+    imgBuracos = await preencherBuracos.preencherBuracos(img_preench)
+    
+    cv.imwrite(f'./results/{fileName[-24:-4]}_test.png', imgBuracos)
 
 
 asyncio.run(testImage())
