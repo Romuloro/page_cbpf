@@ -6,9 +6,9 @@ a = sys.path.append('../modules/')
 
 import RemovePores, preencherBuracos
 
-async def testImage():
+async def testImage(fileName):
 
-    fileName = '/home/romulo/projetos_pessoais/page_cbpf_/back_end_python/input/4266_PP_5X_SEG_LABEL.png'
+    #fileName = '/home/romulo/projetos_pessoais/page_cbpf_/back_end_python/input/4266_PP_5X_SEG_LABEL.png'
 
     img = cv.imread(fileName)
 
@@ -22,4 +22,4 @@ async def testImage():
     cv.imwrite(f'./results/{fileName[-24:-4]}_test.png', imgBuracos)
 
 
-asyncio.run(testImage())
+#asyncio.run(testImage())

@@ -4,6 +4,11 @@ from typing import List
 from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
 import cv2 as cv
+import sys
+
+a = sys.path.append('./modules/')
+
+import pickDir
 
 app = FastAPI()
 
@@ -28,11 +33,8 @@ async def post_arquivo(arquivo: List[UploadFile]):
     return {"file_name": "Good"}
 
 @app.post('/preparedImage')
-async def preparedImage(images: List[UploadFile]):
-    for img in arquivo:
-        with open(f'{img.filename}', "wb") as buffer:
-            shutil.copyfileobj(img.file, buffer)
-
+async def preparedImage(dirName: str):
+    await pickDir.pickDir(dirName)
     return {"file_name": "Good"}
 
 def start():
