@@ -5,6 +5,7 @@ from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
 import cv2 as cv
 import sys
+from pydantic import BaseModel
 
 a = sys.path.append('./modules/')
 
@@ -32,9 +33,13 @@ async def post_arquivo(arquivo: List[UploadFile]):
 
     return {"file_name": "Good"}
 
+class DirName(BaseModel):
+    dirName: str
+
 @app.post('/preparedImage')
-async def preparedImage(dirName: str):
-    await pickDir.pickDir(dirName)
+async def preparedImage(dirName: DirName):
+    print(dirName.dirName)
+    await pickDir.pickDir(dirName.dirName)
     return {"file_name": "Good"}
 
 def start():

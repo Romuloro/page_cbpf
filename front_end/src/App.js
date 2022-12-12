@@ -30,7 +30,7 @@ export default function App() {
     <div className="first">
       <div className="container">
         <Titulo />
-        <Classe />
+        {/* <Classe /> */}
         {/* <form   action="http://localhost:8080/arquivos" 
                 method="POST" 
                 enctype="multipart/form-data">

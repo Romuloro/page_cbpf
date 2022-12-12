@@ -8,3 +8,9 @@ export const api = axios.create({
 export const uploadArq = async (files) => {
   return api.get("/data");
 };
+
+export const preparedImage = async (dir) => {
+  const dirName = String(dir)
+  console.log(dirName);
+  return api.post("/preparedImage", {dirName});
+};
