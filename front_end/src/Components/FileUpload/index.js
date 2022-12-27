@@ -3,39 +3,36 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import "./FileUpload.css";
 
-import { uploadArq } from "../../api/api";
+import { preparedImage } from "../../api/api";
 
 const FileUpload = ({ files, setFiles, removeFile }) => {
 
-  const [arquivo, setArquivo] = useState([])
+  const [arquivo, setArquivo] = useState("")
  
   const uploadFiles = async (e) => {
     e.preventDefault();
     console.log("aqui");
-    console.log(arquivo);
-    await uploadArq(arquivo);
+    console.log(arquivo, typeof(arquivo));
+    const result = await preparedImage(arquivo);
   };
 
   return (
     <>
       <div className="file-card">
-        <form
-          onSubmit={uploadFiles}
-        >
+        <form onSubmit={uploadFiles}>
           <div className="file-inputs">
             <input
-              type="file"
+              type="text"
               id="meuArquivo"
               name="arquivo"
-              onChange={e => setArquivo(e.target.files[0])}
-              multiple={true}
+              onChange={(e) => setArquivo(e.target.value)}
             />
-            <button type="submit">
+            {/* <button type="submit">
               <i>
                 <FontAwesomeIcon icon={faPlus} />
               </i>
               Upload
-            </button>
+            </button> */}
           </div>
           <p className="main">Supported files</p>
           <p className="info">JPG, PNG</p>

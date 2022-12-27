@@ -4,6 +4,12 @@ from typing import List
 from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
 import cv2 as cv
+import sys
+from pydantic import BaseModel
+
+a = sys.path.append('./modules/')
+
+import pickDir
 
 app = FastAPI()
 
@@ -22,17 +28,18 @@ async def get_data():
 @app.post('/arquivo')
 async def post_arquivo(arquivo: List[UploadFile]):
     for img in arquivo:
-        with open(f'./output/{img.filename}', "wb") as buffer:
+        with open(f'./input/{img.filename}', "wb") as buffer:
             shutil.copyfileobj(img.file, buffer)
 
     return {"file_name": "Good"}
 
-@app.post('/watershed')
-async def whatershed_process(images: List[UploadFile]):
-    for img in arquivo:
-        with open(f'{img.filename}', "wb") as buffer:
-            shutil.copyfileobj(img.file, buffer)
+class DirName(BaseModel):
+    dirName: str
 
+@app.post('/preparedImage')
+async def preparedImage(dirName: DirName):
+    print(dirName.dirName)
+    await pickDir.pickDir(dirName.dirName)
     return {"file_name": "Good"}
 
 def start():

@@ -17,11 +17,11 @@
 
 .file-inputs input {
     position: relative;
-    text-align: right;
-    opacity: 0;
+    text-align: center;
+    opacity: 1;
     z-index: 2;
-    cursor: pointer;
-    height: 46px;
+    height: 30px;
+    width: 100%;
     max-width: 200px;
 }
 
